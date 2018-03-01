@@ -2,9 +2,10 @@ import React, { Component }  from 'react';
 import { Link } from 'react-router-dom';
 
 import ContactService from '../../services/ContactService'
+import { Input } from '../../components/Input/Input'
 
 import './ContactEdit.css'
-import imAvatar from '../../assets/img_avatar.png'
+import imgAvatar from '../../assets/img_avatar.png'
 
 const Header = ({contact, onDeleteContact}) => {
   const backUrl = contact._id ? `/contacts/${contact._id}` : `/contacts`
@@ -40,13 +41,9 @@ class ContactEdit  extends Component {
       })
   }
 
-  onInputChange(field) {
-    return (event) => {
-      const contact = {...this.state.contact, 
-                      [field]: event.target.value}    
-
-      this.setState({contact})
-    }
+  onInputChange = (field) => {
+    const contact = {...this.state.contact, ...field}
+    this.setState({contact})
   }
 
   onFormSubmit = (event) => {
@@ -63,38 +60,34 @@ class ContactEdit  extends Component {
       .then( () => this.props.history.push(`/contacts`))
   }
 
+  renderField(name, title, value) {
+    return (
+      <Input field={{name, title, value}} onInput={this.onInputChange} />
+    )
+  }
+
   render() {
     const {contact} = this.state
+    const avatar = contact.picture || imgAvatar
+
     return (
       <div className="contact-edit">
         <Header contact={contact} onDeleteContact={this.onDeleteContact}/>
         <div className="contact-edit-body">
-          <img src={imAvatar} alt="Person" width="96" height="96" />
+          <img src={avatar} alt="Person" width="96" height="96" />
           
           <form onSubmit={this.onFormSubmit} className="contact-edit-form">
             
-            <div className="form-group">
-              <label>Name:</label>
-              <input 
-                  placeholder="Name"
-                  value={contact.name}
-                  onInput={this.onInputChange('name')}/>
+            <div className="form-field">
+              {this.renderField('name', 'Name', contact.name)}
             </div>
 
-            <div className="form-group">
-              <label>Phone:</label>
-              <input 
-                  placeholder="Phone"
-                  value={contact.phone}
-                  onInput={this.onInputChange('phone')}/>
+            <div className="form-field">
+              {this.renderField('phone', 'Phone', contact.phone)}
             </div>
 
-            <div className="form-group">
-              <label>Email:</label>
-              <input 
-                  placeholder="Email"
-                  value={contact.email}
-                  onInput={this.onInputChange('email')}/>
+            <div className="form-field">
+              {this.renderField('email', 'Email', contact.email)}
             </div>
             
             <div className="form-actions-container">
@@ -102,15 +95,10 @@ class ContactEdit  extends Component {
             </div>
             
           </form>
-        </div>
-        
-        <br />
-        <br />
-        
+        </div>  
       </div>
     )
   }
-
 }
 
 export default ContactEdit;

@@ -8,28 +8,6 @@
   margin: 0 10px 0 0; 
 }
 
-.contact-edit .form-group {
-  display: flex;
-  justify-content: start;
-  margin: 20px 0 0 0; 
-}
-
-.contact-edit .form-group label {
-  margin: 0 15px 0 0; 
-}
-
-.contact-edit .form-group input {
-  width: 100%;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid #D8D8D8; 
-}
-
-.contact-edit .form-group input:focus {
-  outline: none; 
-}
-
 .contact-edit .form-actions-container {
   display: flex;
   justify-content: flex-end;

@@ -1,7 +1,5 @@
 import React from 'react';
 import './ContactPreview.css'
-import imAvatar from '../../assets/img_avatar.png'
-
 
 const ContactPreview = ({contact}) => {
   return (

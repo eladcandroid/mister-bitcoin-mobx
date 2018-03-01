@@ -196,6 +196,7 @@ function _updateContact(contact) {
 function _addContact(contact) {
   return new Promise((resolve, reject) => { 
     contact._id = uniqid()
+    contact.picture = 'img/img_avatar.png'      
     contacts.push(contact)
     resolve(contacts)
   })
@@ -214,24 +215,10 @@ function getEmptyContact() {
   }
 }
 
-function filter (term) {
-  term = term.toLocaleLowerCase()
-  return new Promise((resolve, reject) => { 
-    const c = contacts.filter( contact => {
-      return contact.name.toLocaleLowerCase().includes(term) ||
-             contact.phone.toLocaleLowerCase().includes(term) ||
-             contact.email.toLocaleLowerCase().includes(term)
-    })
-
-    resolve(c)
-  })
-}
-
 export default {
   getContacts,
   getContactById,
   deleteContact,
-  // filter,
   saveContact,
   getEmptyContact
 }

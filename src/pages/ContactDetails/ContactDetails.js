@@ -1,18 +1,15 @@
 import React, { Component }  from 'react';
 import { Link } from 'react-router-dom';
-import './ContactDetails.css'
-import imgAvatar from '../../assets/img_avatar.png'
 
 import ContactService from '../../services/ContactService'
 
+import './ContactDetails.css'
+import imgAvatar from '../../assets/img_avatar.png'
+
 class ContactDetails  extends Component {
-  constructor(props) {
-    super(props)
+  state =  { contact: {} }
 
-    this.state =  { contact: {} }
-  }
-
-  componentWillMount() {
+  componentDidMount() {
     const id = this.props.match.params.id; // params -> from url
     this.fetchContact(id);
   }

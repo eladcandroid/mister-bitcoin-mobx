@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import './ContactFilter.css'
 
 class ContactFilter extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {term: ''};
-    }
+    state = {term: ''};
 
     onInputChange = (ev) => {
       const term = ev.target.value;

@@ -167,7 +167,7 @@ function getContacts (filterBy = null) {
 function getContactById (id) {
     return new Promise((resolve, reject) => {
       const contact = contacts.find( contact => contact._id === id)
-      contact ? resolve(contact) : reject(`Contact id ${id} not found!`)
+      contact ? resolve(JSON.parse(JSON.stringify(contact))) : reject(`Contact id ${id} not found!`)
     })
 }
 

@@ -19,12 +19,8 @@ const Header = ({contact, onDeleteContact}) => {
 }
 
 class ContactEdit  extends Component {
-  constructor(props) {
-    super(props)
-    
-    this.state =  { 
-      contact: ContactService.getEmptyContact() 
-    }
+  state =  { 
+    contact: ContactService.getEmptyContact() 
   }
 
   componentDidMount() {

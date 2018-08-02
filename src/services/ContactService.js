@@ -178,7 +178,7 @@ function deleteContact(id) {
       contacts.splice(index, 1)
     }
 
-    resolve(contacts)
+    resolve()
   })
 }
 
@@ -189,7 +189,7 @@ function _updateContact(contact) {
       contacts[index] = contact
     }
 
-    resolve(contacts)
+    resolve(contact)
   })
 }
 
@@ -198,7 +198,7 @@ function _addContact(contact) {
     contact._id = uniqid()
     contact.picture = '/img/img_avatar.png'      
     contacts.push(contact)
-    resolve(contacts)
+    resolve(contact)
   })
 }
 

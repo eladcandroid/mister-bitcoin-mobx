@@ -1,36 +1,38 @@
 import React, { Component }  from 'react';
 import { Link } from 'react-router-dom';
-
-import ContactService from '../../services/ContactService'
+import { inject, observer } from 'mobx-react';
 
 import './ContactDetails.css'
 import imgAvatar from '../../assets/img_avatar.png'
-
+@inject('store')
+@observer
 class ContactDetails  extends Component {
+  
   state =  { contact: {} }
-
+  
   componentDidMount() {
     const id = this.props.match.params.id; // params -> from url
-    this.fetchContact(id);
+    this.props.store.contactStore.fetchContact(id)
   }
 
-  fetchContact(id) {
-    ContactService.getContactById(id)
-      .then( contact => {
-        this.setState( {contact})
-      })
+  renderHeader(contact) {
+    return (
+      <header className="contact-details-header">
+        <Link to={`/contacts`} >Back</Link>
+        <Link to={`/contacts/edit/${contact._id}`}>Edit</Link>
+      </header>
+    )
   }
 
   render() {
-    const contact = this.state.contact
+    if (this.props.store.contactStore.isLoading) return <div>Loading...</div>
+
+    const contact = this.props.store.contactStore.selectedContact
     const avatar = contact.picture || imgAvatar
 
     return (
       <div className="contact-details">
-        <header className="contact-details-header">
-          <Link to={`/contacts`} >Back</Link>
-          <Link to={`/contacts/edit/${this.state.contact._id}`}>Edit</Link>
-        </header>
+        {this.renderHeader(contact)}
         <div className="contact-details-body">
           <img src={avatar} alt="Person" width="96" height="96" />
           <div className="contact-details-row">Name: {contact.name}</div>

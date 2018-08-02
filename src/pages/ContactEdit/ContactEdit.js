@@ -1,5 +1,7 @@
 import React, { Component }  from 'react';
 import { Link } from 'react-router-dom';
+import { inject, observer } from 'mobx-react';
+import { observable  } from 'mobx';
 
 import ContactService from '../../services/ContactService'
 import { Input } from '../../components/Input/Input'
@@ -17,43 +19,44 @@ const Header = ({contact, onDeleteContact}) => {
     </header>
   )
 }
-
+@inject('store')
+@observer
 class ContactEdit  extends Component {
-  state =  { 
-    contact: ContactService.getEmptyContact() 
-  }
 
-  componentDidMount() {
+  @observable contact = ContactService.getEmptyContact()
+  @observable loading = true
+
+  async componentDidMount() {
     const id = this.props.match.params.id; // params -> from url
-    if (!id) return
+    if (!id) {
+      this.loading = false
+      return
+    }
     
-    this.fetchContact(id);
-  }
-
-  fetchContact(id) {
-    ContactService.getContactById(id)
-      .then( contact => {
-        this.setState( {contact})
-      })
+    try {
+      this.contact = await ContactService.getContactById(id)
+    } catch(err) {
+      this.contact = ContactService.getEmptyContact()
+    } finally{
+      this.loading = false
+    }
   }
 
   onInputChange = (field) => {
-    const contact = {...this.state.contact, ...field}
-    this.setState({contact})
+    const contact = {...this.contact, ...field}
+    this.contact = contact
   }
 
-  onFormSubmit = (event) => {
+  onFormSubmit = async (event) => {
     event.preventDefault()
-    const contact = this.state.contact
-    ContactService.saveContact(contact).then ( () => {
-      this.setState({contact: ContactService.getEmptyContact() })
-      this.props.history.push(`/contacts/${contact._id}`)
-    })    
+
+    const updatedContact = await this.props.store.contactStore.saveContact(this.contact)
+    this.props.history.push(`/contacts/${updatedContact._id}`)    
   }
 
-  onDeleteContact = () => {
-    ContactService.deleteContact(this.state.contact._id)
-      .then( () => this.props.history.push(`/contacts`))
+  onDeleteContact = async () => {
+    await this.props.store.contactStore.deleteContact(this.contact)
+    this.props.history.push(`/contacts`)
   }
 
   renderField(name, title, value) {
@@ -63,7 +66,9 @@ class ContactEdit  extends Component {
   }
 
   render() {
-    const {contact} = this.state
+    if (this.loading) return <div>Loading...</div>
+
+    const contact = this.contact
     const avatar = contact.picture || imgAvatar
 
     return (

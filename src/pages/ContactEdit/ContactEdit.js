@@ -43,8 +43,7 @@ class ContactEdit  extends Component {
   }
 
   onInputChange = (field) => {
-    const contact = {...this.contact, ...field}
-    this.contact = contact
+    this.contact = {...this.contact, ...field}
   }
 
   onFormSubmit = async (event) => {

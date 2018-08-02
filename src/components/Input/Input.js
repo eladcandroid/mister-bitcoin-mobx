@@ -17,7 +17,7 @@ export class Input extends Component {
                     className="input"
                     placeholder={name}
                     value={value}
-                    onInput={this.onInputChange}/>
+                    onChange={this.onInputChange}/>
             </div>
         );
     } 

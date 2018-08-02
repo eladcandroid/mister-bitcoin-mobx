@@ -5,7 +5,8 @@ export class ContactStore {
     @observable selectedContact = {};
     @observable isLoading = false;
     @observable status = ''
-
+    filterBy = null
+    
     constructor(rootStore, apiService) {
         this.rootStore = rootStore
         this.apiService = apiService
@@ -19,9 +20,9 @@ export class ContactStore {
 
     @action
     async fetchContacts(term = null) {
-        const filterBy = term ? {term} : null
+        this.filterBy = {term}
         this.isLoading = true
-        this.contacts = await this.apiService.getContacts(filterBy)
+        this.contacts = await this.apiService.getContacts(this.filterBy)
         this.isLoading = false
     }
 

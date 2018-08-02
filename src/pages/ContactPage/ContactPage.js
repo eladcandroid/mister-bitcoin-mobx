@@ -9,9 +9,10 @@ import './ContactPage.css'
 @inject('store')
 @observer
 class ContactPage extends Component {
-  state = { 
-    contacts: []
-  };
+  
+  componentDidMount() {
+    this.props.store.contactStore.fetchContacts()
+  }
 
   contactSearch = (term) => {
     this.props.store.contactStore.fetchContacts(term)

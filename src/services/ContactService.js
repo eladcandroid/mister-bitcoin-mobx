@@ -149,11 +149,11 @@ function sort(arr) {
   })
 }
 
-function getContacts (filterBy = null) {
+function getContacts (filterBy = {}) {
   return new Promise((resolve, reject) => { 
     var contactsToReturn = contacts;
-    if (filterBy) {
-      const {term} = filterBy;
+    const {term} = filterBy;
+    if (term) {
       contactsToReturn = contacts.filter( contact => {
         return contact.name.toLocaleLowerCase().includes(term) ||
                contact.phone.toLocaleLowerCase().includes(term) ||

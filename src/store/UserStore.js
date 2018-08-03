@@ -1,12 +1,24 @@
 import { observable, action, computed  } from 'mobx';
-
-export class ContactStore {
+export class UserStore {
     @observable user = null;
     @observable isLoading = true;
 
-    constructor(rootStore) {
+    constructor(rootStore, apiService) {
         this.rootStore = rootStore
+        this.apiService = apiService
+
+        this.user = apiService.loadUser()
     }
     
+    @action
+    signup(name) {
+        this.isLoading = true
+        this.user = this.apiService.signup(name)
+        this.isLoading = false
+    }
 
+    @computed
+    get isUserExist() {
+        return !!this.user
+    }
 }

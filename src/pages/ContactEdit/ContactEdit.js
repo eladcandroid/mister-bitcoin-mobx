@@ -8,14 +8,20 @@ import { Input } from '../../components/Input/Input'
 
 import './ContactEdit.css'
 import imgAvatar from '../../assets/img_avatar.png'
+import backImg from '../../assets/icons/back.png'
+import deleteImg from '../../assets/icons/delete.png'
 
 const Header = ({contact, onDeleteContact}) => {
   const backUrl = contact._id ? `/contacts/${contact._id}` : `/contacts`
 
   return (
     <header className="contact-edit-header">
-      <Link to={backUrl}>Back</Link>
-      {contact._id && <Link to='/' onClick={onDeleteContact}>Delete</Link>}
+      <Link to={backUrl}>
+        <img src={backImg} width="24px" height="24px" alt="Back" />
+      </Link>
+      {contact._id && <Link to='/' onClick={onDeleteContact}>
+      <img src={deleteImg} width="24px" height="24px" alt="Delete" />
+      </Link>}
     </header>
   )
 }

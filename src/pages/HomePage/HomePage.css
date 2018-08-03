@@ -1,10 +1,13 @@
 
 .user-details {
-  padding: 0 0 20px 0;
+  background-color: #7fc7ff;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 0 0 20px 0;
 }
 
 .user-name {
-  margin: 10px 0 20px 0;
+  margin: 0 0 20px 0;
   font-size: 22px;
 }
 
@@ -23,3 +26,4 @@
 .user-coins-count img, .user-coins-rate img {
   margin: 0 5px 0 0;
 }
+

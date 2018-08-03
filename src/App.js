@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 import MainNav from './components/MainNav/MainNav'
 
 import HomePage from './pages/HomePage/HomePage'
@@ -10,7 +12,6 @@ import ContactDetails from './pages/ContactDetails/ContactDetails'
 import ContactEdit from './pages/ContactEdit/ContactEdit'
 
 import './App.css'
-
 class App extends Component {
   
   render() {
@@ -22,14 +23,12 @@ class App extends Component {
 
             <div className="app-content">
               <Switch>
-                <Route path="/contacts/edit/:id?" 
-                  component={ContactEdit} />
-
-                <Route path="/contacts/:id" component={ContactDetails} />
-                <Route path="/contacts" component={ContactPage} />
-                <Route path="/statistics" component={StatisticPage} />
                 <Route path="/signup" component={SignupPage} />
-                <Route path="/" component={HomePage} />  
+                <PrivateRoute path="/contacts/edit/:id?" component={ContactEdit} />
+                <PrivateRoute path="/contacts/:id" component={ContactDetails} />
+                <PrivateRoute path="/contacts" component={ContactPage} />
+                <PrivateRoute path="/statistics" component={StatisticPage} />
+                <PrivateRoute path="/" component={HomePage} />  
               </Switch>
             </div>
           </div>

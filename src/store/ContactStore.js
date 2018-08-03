@@ -12,11 +12,6 @@ export class ContactStore {
         this.apiService = apiService
         this.fetchContacts()
     }
-    
-    // @computed
-    // get contactById(id) {
-    //     return this.contactsList
-    // }
 
     @action
     async fetchContacts(term = null) {

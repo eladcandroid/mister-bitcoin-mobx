@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import {observable} from 'mobx'
 
+import MovesList from '../../components/MovesList/MovesList'
 import {BitcoinService} from '../../services/BitcoinService'
 
 import coinsImg from '../../assets/icons/coins.png'
@@ -33,6 +34,7 @@ class HomePage extends Component {
             <img src={bitcoinImg} alt="bitcoin" width="24px" height="24px" /> BTC: {this.bitcoinRate}
             </div>
           </div>
+          <MovesList showContactName={true} moves={this.props.store.userStore.lastMoves} title="Your last 3 Moves:"/>
       </div>
     );
   }

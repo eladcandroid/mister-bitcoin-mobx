@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { observable  } from 'mobx';
 
+import bitcoinImg from '../../assets/icons/bitcoin.png'
 import './SignupPage.css'
 
 @inject('store')
@@ -23,18 +24,19 @@ class SignupPage extends Component {
   render() {
     return (
       <div className="signup">
+        <div className="signup-icon">
+          <img src={bitcoinImg} alt="bitcoin" width="64px" height="64px" />
+        </div>
 
-          <div className="signup-body">
-              <form onSubmit={this.onFormSubmit} className="signup-form">
-                  <div>Please enter your name:</div>
+        <form onSubmit={this.onFormSubmit} className="signup-form">
+            <div className="signup-title">Please enter your name:</div>
 
-                  <input value={this.name} onInput={this.onInputChange} />
-                  
-                  <div className="actions-container">
-                    <button type="submit">Sign up</button>
-                  </div>
-              </form>
-          </div>
+            <input value={this.name} onInput={this.onInputChange} />
+            
+            <div className="actions-container">
+              <button type="submit">Sign up</button>
+            </div>
+        </form>
       </div>
     );
   }

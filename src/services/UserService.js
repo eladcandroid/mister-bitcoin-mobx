@@ -1,5 +1,5 @@
 const signup = (name) => {
-    const user = {name, coins: 100}
+    const user = {name, coins: 100, moves: []}
     saveToLocal(user)
 
     return user
@@ -7,6 +7,10 @@ const signup = (name) => {
 
 const loadUser = () => {
     return loadFromLocal()
+}
+
+const updateUser = (user) => {
+    saveToLocal(user)
 }
 
 const saveToLocal = (user) => {
@@ -21,5 +25,6 @@ const loadFromLocal = () => {
 }
 export const UserService = {
     signup,
-    loadUser
+    loadUser,
+    updateUser
 }

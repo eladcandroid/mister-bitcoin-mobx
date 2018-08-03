@@ -1,11 +1,13 @@
 import React, { Component }  from 'react';
 import { Link } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
+import TransferCoins from '../../components/TransferCoins/TransferCoins'
+import MovesList from '../../components/MovesList/MovesList'
 
-import './ContactDetails.css'
 import imgAvatar from '../../assets/img_avatar.png'
 import backImg from '../../assets/icons/back.png'
 import editImg from '../../assets/icons/edit.png'
+import './ContactDetails.css'
 @inject('store')
 @observer
 class ContactDetails  extends Component {
@@ -44,6 +46,14 @@ class ContactDetails  extends Component {
           <div className="contact-details-row">Name: {contact.name}</div>
           <div className="contact-details-row">Phone: {contact.phone}</div>
           <div className="contact-details-row">Email: {contact.email}</div>
+        </div>
+
+        <div className="transter-coins-container">
+          <TransferCoins contact={contact}/>
+        </div>
+
+        <div className="moves-list-container">
+          <MovesList moves={this.props.store.userStore.movesToCurrContact} title="Your Moves:"/>
         </div>
       </div>
     )

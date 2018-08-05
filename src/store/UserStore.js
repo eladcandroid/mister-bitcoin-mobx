@@ -21,7 +21,7 @@ export class UserStore {
     @action
     transferCoins(contactId, contactName, amount) {
         this.isProcessing = true
-        this.user.moves.unshift({_id: contactId, to: contactName, amount, at: Date.now()})
+        this.user.moves.unshift({toId: contactId, to: contactName, amount, at: Date.now()})
         this.apiService.updateUser(this.user)
         this.isProcessing = false
     }
@@ -34,7 +34,7 @@ export class UserStore {
     @computed
     get movesToCurrContact() {
         const selectedContactId = this.rootStore.contactStore.selectedContact._id
-        return this.user.moves.filter(move => move._id === selectedContactId)
+        return this.user.moves.filter(move => move.toId === selectedContactId)
     }
 
     @computed
@@ -42,9 +42,5 @@ export class UserStore {
         return this.user.moves.slice(0, 3)
     }
 
-    compare(a, b) {
-        if (a < b) return -1
-        if (a > b) return 1;
-        return 0;
-    }
+   
 }

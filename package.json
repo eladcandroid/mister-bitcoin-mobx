@@ -2,7 +2,7 @@
   "name": "misterbit-coin",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://moshe-pinhasi.github.io/mister-bitccoin-mobx",
+  "homepage": "https://moshe-pinhasi.github.io/mister-bitcoin-mobx",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",

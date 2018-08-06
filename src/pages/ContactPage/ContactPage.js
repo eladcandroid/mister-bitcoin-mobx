@@ -32,7 +32,7 @@ class ContactPage extends Component {
             <ContactList contacts={contactStore.contacts} />
         </div>
         <div className="action-container">
-          <Link to={'/contacts/edit/'}>
+          <Link to={'/contacts/new'}>
             <img src={addImg} width="48px" height="48px" alt="Add New" />
           </Link>
         </div>

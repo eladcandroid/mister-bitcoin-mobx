@@ -24,11 +24,12 @@ class App extends Component {
             <div className="app-content">
               <Switch>
                 <Route path="/signup" component={SignupPage} />
+                <PrivateRoute path="/contacts/new" component={ContactEdit} />
                 <PrivateRoute path="/contacts/edit/:id?" component={ContactEdit} />
                 <PrivateRoute path="/contacts/:id" component={ContactDetails} />
                 <PrivateRoute path="/contacts" component={ContactPage} />
                 <PrivateRoute path="/statistics" component={StatisticPage} />
-                <PrivateRoute path="/" component={HomePage} />  
+                <PrivateRoute exact path="/" component={HomePage} />  
               </Switch>
             </div>
           </div>

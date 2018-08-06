@@ -12,13 +12,13 @@ class MainNav extends Component {
   render() {
     return (
         <header className="main-nav">
-        <NavLink to="/">
+        <NavLink exact className='main-nav-item' activeClassName='selected' to="/">
           <img src={homeImg} alt="Home" width="24px" height="24px" />
         </NavLink>
-        <NavLink to="/contacts">
+        <NavLink className='main-nav-item' activeClassName='selected' to="/contacts">
           <img src={usersImg} alt="Contacts" width="24px" height="24px" />
         </NavLink>
-        <NavLink to="/statistics">
+        <NavLink className='main-nav-item' activeClassName='selected' to="/statistics">
           <img src={increaseImg} alt="Statistics" width="24px" height="24px" />
         </NavLink>
       </header>

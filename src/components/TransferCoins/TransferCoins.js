@@ -42,7 +42,7 @@ export default class TransferCoins extends Component {
     render() {
       return (
         <div className='transfer-coins'>
-          <div>Wants to transfer coins?</div>
+          <div>Transfer coins to {this.props.contact.name}:</div>
           <form onSubmit={this.onFormSubmit} className='transfer-form'>
             <label>Amount:</label>
               <input 

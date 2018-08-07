@@ -40,7 +40,5 @@ export class UserStore {
     @computed
     get lastMoves() {
         return this.user.moves.slice(0, 3)
-    }
-
-   
+    }  
 }

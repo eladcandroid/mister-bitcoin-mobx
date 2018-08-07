@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { /*BrowserRouter*/ HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import { inject, observer } from 'mobx-react';
+
 import MainNav from './components/MainNav/MainNav'
 
 import HomePage from './pages/HomePage/HomePage'
@@ -12,6 +14,8 @@ import ContactDetails from './pages/ContactDetails/ContactDetails'
 import ContactEdit from './pages/ContactEdit/ContactEdit'
 
 import './App.css'
+@inject('store')
+@observer
 class App extends Component {
   
   render() {
@@ -19,7 +23,7 @@ class App extends Component {
       <div className="app">
         <Router>
           <div>
-            <MainNav />
+            {this.props.store.userStore.user && <MainNav />}
 
             <div className="app-content">
               <Switch>
